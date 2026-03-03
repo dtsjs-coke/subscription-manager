@@ -58,7 +58,7 @@ def show_auth_page():
     with tab_register:
         st.subheader("회원가입")
         new_id = st.text_input("아이디 (영문/숫자)", key="reg_id")
-        new_pw = st.text_input("비밀번호", type="password", key="reg_pw")
+        new_pw = st.text_input("비밀번호(생년월일 등 유출돼도 괜찮은걸로 입력하세요. 책임안짐)", type="password", key="reg_pw")
         new_pw2 = st.text_input("비밀번호 확인", type="password", key="reg_pw2")
         new_tg = st.text_input(
             "텔레그램 Chat ID (선택)",
