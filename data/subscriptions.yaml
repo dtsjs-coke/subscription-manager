@@ -42,7 +42,7 @@ subscriptions:
     notify_sent: []
     payment_date: '10'
     shared_members: 2
-    start_date: '2022-03-10'
+    start_date: '2020-05-10'
     status: active
     total_price: 17000
     url: ''
