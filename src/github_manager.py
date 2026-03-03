@@ -18,8 +18,8 @@ def _get_repo_info():
         owner = st.secrets["github"]["owner"]
         repo = st.secrets["github"]["repo"]
     else:
-        owner = os.environ.get("GITHUB_OWNER")
-        repo = os.environ.get("GITHUB_REPO")
+        owner = os.environ.get("GH_OWNER")
+        repo = os.environ.get("GH_REPO")
     return owner, repo
 
 
