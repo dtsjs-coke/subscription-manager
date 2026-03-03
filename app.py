@@ -124,9 +124,9 @@ def show_subscription_table(items: list):
     def highlight_row(row):
         days = row["_days"]
         if days <= 7:
-            return ["background-color: #ffe0e0"] * len(row)
+            return ["background-color: #ffe0e0; color: #333333"] * len(row)
         elif days <= 30:
-            return ["background-color: #fff3e0"] * len(row)
+            return ["background-color: #fff3e0; color: #333333"] * len(row)
         return [""] * len(row)
 
     display_cols = ["서비스명", "구독 시작일", "만료일", "결제일", "구독 기간",
