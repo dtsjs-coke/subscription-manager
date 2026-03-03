@@ -1,1 +1,16 @@
-subscriptions: {}
+subscriptions:
+  jaeseungjo:
+  - billing_cycle: 기타
+    description: ''
+    end_date: '2026-03-05'
+    id: c74775fa-5c02-4ed5-b2e5-06f034ad867a
+    monthly_price: 0
+    name: 지니뮤직
+    note: ''
+    notify_sent: []
+    payment_date: 2026-3-4
+    shared_members: 1
+    start_date: '2026-03-03'
+    status: active
+    total_price: 0
+    url: ''
