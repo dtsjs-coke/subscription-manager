@@ -28,3 +28,21 @@ subscriptions:
     status: active
     total_price: 118150
     url: ''
+  - billing_cycle: 월간
+    description: '인호
+
+      승수는 안보나?
+
+      태룡은 안봄'
+    end_date: '2036-02-10'
+    id: e9d106b7-22b2-43eb-b0f8-2eeccf029b93
+    monthly_price: 17000
+    name: 넷플릭스
+    note: ''
+    notify_sent: []
+    payment_date: '10'
+    shared_members: 2
+    start_date: '2022-03-10'
+    status: active
+    total_price: 17000
+    url: ''
