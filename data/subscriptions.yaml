@@ -1,8 +1,9 @@
 subscriptions:
   jaeseungjo:
-  - billing_cycle: 기타
+  - auto_renew: true
+    billing_cycle: 기타
     description: ''
-    end_date: '2026-03-05'
+    end_date: '9999-12-31'
     id: c74775fa-5c02-4ed5-b2e5-06f034ad867a
     monthly_price: 0
     name: 지니뮤직
