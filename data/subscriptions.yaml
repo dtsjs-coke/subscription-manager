@@ -40,7 +40,7 @@ subscriptions:
     end_date: '9999-12-31'
     id: e9d106b7-22b2-43eb-b0f8-2eeccf029b93
     monthly_price: 17000
-    name: 넷플릭스
+    name: 넷플릭스 프리미엄
     note: ''
     notify_sent: []
     payment_date: '10'
