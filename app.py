@@ -159,7 +159,8 @@ def show_subscription_form(user_id: str, edit_item: dict = None):
     title = "✏️ 구독 수정" if is_edit else "➕ 구독 추가"
     st.subheader(title)
 
-    with st.form("sub_form"):
+    form_key = "sub_form_edit" if is_edit else "sub_form_add"
+    with st.form(form_key):
         col1, col2 = st.columns(2)
         with col1:
             name = st.text_input("서비스명 *", value=edit_item.get("name", "") if is_edit else "")
