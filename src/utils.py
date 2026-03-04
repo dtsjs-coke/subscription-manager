@@ -21,7 +21,9 @@ def calc_monthly_price(total_price: int, billing_cycle: str) -> int:
     return total_price
 
 
-def get_status_badge(days: int) -> str:
+def get_status_badge(days: int, auto_renew: bool = False) -> str:
+    if auto_renew:
+        return "∞ 자동갱신"
     if days < 0:
         return "만료"
     elif days == 0:
