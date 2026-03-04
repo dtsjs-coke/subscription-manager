@@ -79,4 +79,19 @@ subscriptions:
     status: active
     total_price: 46800
     url: ''
+  - auto_renew: true
+    billing_cycle: 연간
+    description: ''
+    end_date: '9999-12-31'
+    id: 7ae8796b-2cb6-43f9-bfb8-88a14c0fb3b5
+    monthly_price: 3900
+    name: 네이버플러스
+    note: ''
+    notify_sent: []
+    payment_date: '1'
+    shared_members: 1
+    start_date: '2026-03-01'
+    status: active
+    total_price: 46800
+    url: ''
   yjlee: []
