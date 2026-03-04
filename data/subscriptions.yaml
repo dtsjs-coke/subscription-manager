@@ -69,7 +69,7 @@ subscriptions:
     description: ''
     end_date: '9999-12-31'
     id: 6a7a192a-c0fa-4449-ae69-1cd76cb4e567
-    monthly_price: 3900
+    monthly_price: 0
     name: 요기요(네이버플러스)
     note: ''
     notify_sent: []
@@ -77,7 +77,7 @@ subscriptions:
     shared_members: 1
     start_date: '2026-03-01'
     status: active
-    total_price: 46800
+    total_price: 0
     url: ''
   - auto_renew: true
     billing_cycle: 연간
