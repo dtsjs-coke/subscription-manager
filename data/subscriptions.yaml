@@ -1,1 +1,63 @@
-subscriptions: {}
+subscriptions:
+  jaeseungjo:
+  - billing_cycle: 기타
+    description: ''
+    end_date: '2026-03-05'
+    id: c74775fa-5c02-4ed5-b2e5-06f034ad867a
+    monthly_price: 0
+    name: 지니뮤직
+    note: ''
+    notify_sent: []
+    payment_date: 2026-3-4
+    shared_members: 1
+    start_date: '2026-03-03'
+    status: active
+    total_price: 0
+    url: ''
+  - billing_cycle: 연간
+    description: 석훈 재유 인호
+    end_date: '2026-11-11'
+    id: e56160a1-de93-4ffa-a074-03a22b72f14b
+    monthly_price: 9846
+    name: 디즈니
+    note: ''
+    notify_sent: []
+    payment_date: ''
+    shared_members: 4
+    start_date: '2025-11-12'
+    status: active
+    total_price: 118150
+    url: ''
+  - billing_cycle: 월간
+    description: '인호
+
+      승수는 안보나?
+
+      태룡은 안봄'
+    end_date: '2036-02-10'
+    id: e9d106b7-22b2-43eb-b0f8-2eeccf029b93
+    monthly_price: 17000
+    name: 넷플릭스
+    note: ''
+    notify_sent: []
+    payment_date: '10'
+    shared_members: 2
+    start_date: '2020-05-10'
+    status: active
+    total_price: 17000
+    url: ''
+  - billing_cycle: 월간
+    description: ''
+    end_date: '2036-03-04'
+    id: c798f54d-aa26-4e2b-bb54-9d6103b4a5ed
+    monthly_price: 0
+    name: 티빙라이트(KT)
+    note: ''
+    notify_sent: []
+    payment_date: ''
+    shared_members: 1
+    start_date: '2026-03-04'
+    status: active
+    total_price: 0
+    url: ''
+  yjlee: []
