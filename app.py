@@ -91,7 +91,7 @@ def show_auth_page():
                     st.session_state.user_id = new_id
                     st.rerun()
                 else:
-                    st.error(msg))
+                    st.error(msg)
 
 
 # ── 구독 테이블 ───────────────────────────────────────────────
