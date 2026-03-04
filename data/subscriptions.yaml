@@ -81,7 +81,7 @@ subscriptions:
     url: ''
   - auto_renew: true
     billing_cycle: 연간
-    description: ''
+    description: 조재승, 홍희경 가족 추가
     end_date: '9999-12-31'
     id: 7ae8796b-2cb6-43f9-bfb8-88a14c0fb3b5
     monthly_price: 3900
