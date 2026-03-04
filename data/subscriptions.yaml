@@ -74,4 +74,18 @@ subscriptions:
     status: active
     total_price: 0
     url: ''
+  - billing_cycle: 월간
+    description: ''
+    end_date: '2026-03-04'
+    id: f18f636f-8dad-4ea5-8c7a-d8572831121a
+    monthly_price: 0
+    name: test
+    note: ''
+    notify_sent: []
+    payment_date: ''
+    shared_members: 1
+    start_date: '2026-03-04'
+    status: active
+    total_price: 0
+    url: ''
   yjlee: []
