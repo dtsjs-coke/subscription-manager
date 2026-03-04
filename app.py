@@ -111,14 +111,22 @@ def show_subscription_table(items: list):
         if str(payment_date).isdigit():
             payment_date = f"매월 {payment_date}일"
 
+        auto_renew = item.get("auto_renew", False)
+        badge = get_status_badge(days, auto_renew=auto_renew)
+        personal_price = round(
+            item.get("monthly_price", 0) / max(item.get("shared_members", 1), 1)
+        )
+
         rows.append({
             "서비스명": item.get("name", ""),
             "구독 시작일": item.get("start_date", ""),
-            "만료일": item.get("end_date", ""),
+            "만료일": "∞" if auto_renew else item.get("end_date", ""),
             "결제일": payment_date,
+            "자동갱신": "✅" if auto_renew else "",
             "구독 기간": item.get("billing_cycle", ""),
             "총 가격": format_price(item.get("total_price", 0)),
             "월 환산": format_price(item.get("monthly_price", 0)),
+            "개인 부담금": format_price(personal_price),
             "공유 인원": item.get("shared_members", 1),
             "상태": badge,
             "링크": item.get("url", ""),
@@ -132,14 +140,18 @@ def show_subscription_table(items: list):
 
     def highlight_row(row):
         days = row["_days"]
+        # 자동갱신 항목은 하이라이트 없음
+        if row.get("자동갱신") == "✅":
+            return ["background-color: #e8f5e9; color: #333333"] * len(row)
         if days <= 7:
             return ["background-color: #ffe0e0; color: #333333"] * len(row)
         elif days <= 30:
             return ["background-color: #fff3e0; color: #333333"] * len(row)
         return [""] * len(row)
 
-    display_cols = ["서비스명", "구독 시작일", "만료일", "결제일", "구독 기간",
-                    "총 가격", "월 환산", "공유 인원", "상태", "링크", "설명", "비고"]
+    display_cols = ["서비스명", "구독 시작일", "만료일", "결제일", "자동갱신",
+                    "구독 기간", "총 가격", "월 환산", "개인 부담금",
+                    "공유 인원", "상태", "링크", "설명", "비고"]
     styled = df[display_cols + ["_days"]].style.apply(highlight_row, axis=1)
 
     st.dataframe(
@@ -168,10 +180,19 @@ def show_subscription_form(user_id: str, edit_item: dict = None):
                 "구독 시작일 *",
                 value=datetime.strptime(edit_item["start_date"], "%Y-%m-%d").date() if is_edit else date.today(),
             )
-            end_date = st.date_input(
-                "구독 만료일 *",
-                value=datetime.strptime(edit_item["end_date"], "%Y-%m-%d").date() if is_edit else date.today(),
+            auto_renew = st.checkbox(
+                "🔄 자동갱신",
+                value=edit_item.get("auto_renew", False) if is_edit else False,
+                help="자동갱신 서비스는 만료일이 자동으로 ∞ 로 설정됩니다.",
             )
+            if auto_renew:
+                end_date = date(9999, 12, 31)
+                st.caption("📅 만료일: ∞ (자동갱신)")
+            else:
+                default_end = date.today()
+                if is_edit and edit_item.get("end_date") and edit_item.get("end_date") != "9999-12-31":
+                    default_end = datetime.strptime(edit_item["end_date"], "%Y-%m-%d").date()
+                end_date = st.date_input("구독 만료일 *", value=default_end)
             payment_date = st.text_input(
                 "결제일 (예: 15 또는 2025-01-15)",
                 value=str(edit_item.get("payment_date", "")) if is_edit else "",
@@ -221,6 +242,7 @@ def show_subscription_form(user_id: str, edit_item: dict = None):
             "name": name,
             "start_date": str(start_date),
             "end_date": str(end_date),
+            "auto_renew": auto_renew,
             "payment_date": payment_date.strip(),
             "billing_cycle": billing_cycle,
             "total_price": int(total_price),
@@ -315,10 +337,36 @@ def show_main_page(user_id: str):
     # 요약 섹션
     total_monthly = sum(i.get("monthly_price", 0) for i in active_items)
     total_annual = total_monthly * 12
+    # 개인 부담금 계산 (총액 / 공유인원)
+    personal_monthly = sum(
+        round(i.get("monthly_price", 0) / max(i.get("shared_members", 1), 1))
+        for i in active_items
+    )
+    personal_annual = personal_monthly * 12
+
     col1, col2, col3 = st.columns(3)
     col1.metric("활성 구독 수", f"{len(active_items)}개")
-    col2.metric("월간 총액", format_price(total_monthly))
-    col3.metric("연간 총액", format_price(total_annual))
+
+    col2.markdown(
+        f"""
+            <div style='padding: 8px 0'>
+                <div style='font-size:13px; color:gray'>월간 부담금</div>
+                <div style='font-size:28px; font-weight:700'>{format_price(personal_monthly)}</div>
+                <div style='font-size:12px; color:gray'>총액 {format_price(total_monthly)}</div>
+            </div>
+            """,
+        unsafe_allow_html=True,
+    )
+    col3.markdown(
+        f"""
+            <div style='padding: 8px 0'>
+                <div style='font-size:13px; color:gray'>연간 부담금</div>
+                <div style='font-size:28px; font-weight:700'>{format_price(personal_annual)}</div>
+                <div style='font-size:12px; color:gray'>총액 {format_price(total_annual)}</div>
+            </div>
+            """,
+        unsafe_allow_html=True,
+    )
     st.markdown("---")
 
     # 탭
