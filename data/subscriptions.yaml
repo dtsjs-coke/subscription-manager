@@ -2,10 +2,12 @@ subscriptions:
   jaeseungjo:
   - auto_renew: true
     billing_cycle: 월간
-    description: ''
+    description: '요금명세서에 기본팩 1200원, 지니팩 8728로 나옴
+
+      설명에는 무료이며 별 8,728개 나간다고 하는데 확인 필요함.'
     end_date: '9999-12-31'
     id: c74775fa-5c02-4ed5-b2e5-06f034ad867a
-    monthly_price: 0
+    monthly_price: 8728
     name: 지니뮤직(KT 지니팩2.0)
     note: ''
     notify_sent: []
@@ -13,7 +15,7 @@ subscriptions:
     shared_members: 1
     start_date: '2018-07-29'
     status: active
-    total_price: 0
+    total_price: 8728
     url: ''
   - auto_renew: true
     billing_cycle: 연간
