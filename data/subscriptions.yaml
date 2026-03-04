@@ -94,4 +94,19 @@ subscriptions:
     status: active
     total_price: 46800
     url: ''
+  - auto_renew: true
+    billing_cycle: 월간
+    description: 조재승, 홍희경 패밀리 등록
+    end_date: '9999-12-31'
+    id: aab5c509-054a-4ba4-a01d-c06c8be815a1
+    monthly_price: 5900
+    name: 토스프라임
+    note: ''
+    notify_sent: []
+    payment_date: '20'
+    shared_members: 1
+    start_date: '2023-02-13'
+    status: active
+    total_price: 5900
+    url: ''
   yjlee: []
