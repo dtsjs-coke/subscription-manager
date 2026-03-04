@@ -15,15 +15,16 @@ subscriptions:
     status: active
     total_price: 0
     url: ''
-  - billing_cycle: 연간
+  - auto_renew: true
+    billing_cycle: 연간
     description: 석훈 재유 인호
-    end_date: '2026-11-11'
+    end_date: '9999-12-31'
     id: e56160a1-de93-4ffa-a074-03a22b72f14b
     monthly_price: 9846
     name: 디즈니
     note: ''
     notify_sent: []
-    payment_date: ''
+    payment_date: '12'
     shared_members: 4
     start_date: '2025-11-12'
     status: active
