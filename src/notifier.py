@@ -93,3 +93,16 @@ def check_and_notify():
         )
         update_file(SUBS_PATH, new_content, subs_sha, "chore: 알림 발송 이력 업데이트")
         print("✅ subscriptions.yaml 업데이트 완료")
+
+
+def send_welcome(chat_id: str, user_id: str) -> bool:
+    """회원가입 또는 텔레그램 ID 변경 시 웰컴/확인 메시지 발송"""
+    message = (
+        "👋 <b>안녕하세요! 구독 관리 서비스입니다.</b>\n"
+        "\n"
+        f"✅ <b>{user_id}</b>님의 텔레그램 알림이 정상적으로 연결되었습니다.\n"
+        "\n"
+        "앞으로 구독 만료 <b>30일 · 7일 · 1일 전</b>과 <b>당일</b>에\n"
+        "이 채널로 알림을 보내드릴게요! 📋"
+    )
+    return send_telegram(chat_id, message)

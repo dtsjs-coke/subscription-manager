@@ -4,8 +4,16 @@ import streamlit as st
 import os
 
 
+def _get_secret(secrets_section: str, secrets_key: str, env_key: str) -> str:
+    """Streamlit Secrets 우선, 없으면 환경변수 fallback"""
+    try:
+        return st.secrets[secrets_section][secrets_key]
+    except Exception:
+        return os.environ.get(env_key, "")
+
+
 def _get_headers():
-    token = st.secrets["github"]["token"] if hasattr(st, "secrets") else os.environ.get("GH_PAT")
+    token = _get_secret("github", "token", "GH_PAT")
     return {
         "Authorization": f"Bearer {token}",
         "Accept": "application/vnd.github+json",
@@ -14,12 +22,8 @@ def _get_headers():
 
 
 def _get_repo_info():
-    if hasattr(st, "secrets"):
-        owner = st.secrets["github"]["owner"]
-        repo = st.secrets["github"]["repo"]
-    else:
-        owner = os.environ.get("GH_OWNER")
-        repo = os.environ.get("GH_REPO")
+    owner = _get_secret("github", "owner", "GH_OWNER")
+    repo = _get_secret("github", "repo", "GH_REPO")
     return owner, repo
 
 
