@@ -111,4 +111,19 @@ subscriptions:
     status: active
     total_price: 5900
     url: ''
+  - auto_renew: false
+    billing_cycle: 월간
+    description: ''
+    end_date: '2026-04-03'
+    id: ec9fbf87-110a-4e65-9440-e81bfc454480
+    monthly_price: 9782
+    name: 디지로카 드라이빙케어
+    note: ''
+    notify_sent: []
+    payment_date: '3'
+    shared_members: 1
+    start_date: '2025-09-03'
+    status: active
+    total_price: 9782
+    url: ''
   yjlee: []
