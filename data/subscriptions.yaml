@@ -114,7 +114,7 @@ subscriptions:
   - auto_renew: false
     billing_cycle: 월간
     description: ''
-    end_date: '2026-04-03'
+    end_date: '2026-03-06'
     id: ec9fbf87-110a-4e65-9440-e81bfc454480
     monthly_price: 9782
     name: 디지로카 드라이빙케어
