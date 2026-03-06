@@ -119,7 +119,8 @@ subscriptions:
     monthly_price: 9782
     name: 디지로카 드라이빙케어
     note: ''
-    notify_sent: []
+    notify_sent:
+    - 0d
     payment_date: '3'
     shared_members: 1
     start_date: '2025-09-03'
