@@ -130,7 +130,7 @@ subscriptions:
   - auto_renew: false
     billing_cycle: 월간
     description: 2개월 월간 구독 후 년간 구독으로 바꿀 예정
-    end_date: '2026-05-20'
+    end_date: '2026-07-12'
     id: b11b01df-46e3-4ab3-a38c-33cb07d76490
     monthly_price: 14500
     name: GeminiPro
@@ -138,7 +138,7 @@ subscriptions:
     notify_sent: []
     payment_date: '12'
     shared_members: 1
-    start_date: '2026-05-20'
+    start_date: '2026-05-12'
     status: active
     total_price: 14500
     url: ''
