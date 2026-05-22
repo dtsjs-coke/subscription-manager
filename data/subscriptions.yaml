@@ -179,41 +179,4 @@ subscriptions:
     status: active
     total_price: 108500
     url: ''
-  - auto_renew: true
-    billing_cycle: 연간
-    description: '직장 할인 프로그램으로 155,000 > 108,500원.
-
-      -1명~6명(구독 소유자만 AI 사용 가능)
-
-      -동시에 5대의 장치에 로그인
-
-      -PC, Mac, 휴대폰 및 태블릿에서 사용1,2
-
-      -최대 6TB의 안전한 클라우드 저장소(사용자당 1TB) 제공
-
-      -Microsoft Copilot으로 생산성 앱 활용2
-
-      -엄선된 Copilot 기능에 대해 무료보다 높은 사용 한도2
-
-      -선택된 앱에서 업무 파일을 안전하게 Copilot으로 사용하기3
-
-      -AI 이미지를 생성 및 편집할 수 있는 더 높은 사용 한도2
-
-      -4K 내보내기, 브랜드 키트, 필터 및 특수효과를 제공하는 비디오 편집기
-
-      -데이터 및 장치 보안
-
-      -Teams에서 하루 종일 영상 통화와 Copilot2 를 이용하세요'
-    end_date: '9999-12-31'
-    id: 57fef306-f9ca-45d6-be19-dc5462aed4a2
-    monthly_price: 9042
-    name: Microsoft 365 Family
-    note: ''
-    notify_sent: []
-    payment_date: '22'
-    shared_members: 1
-    start_date: '2026-05-22'
-    status: active
-    total_price: 108500
-    url: ''
   yjlee: []
