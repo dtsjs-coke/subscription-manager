@@ -10,7 +10,6 @@ from src.data_manager import (
     delete_subscription,
 )
 from src.utils import days_until_expiry, calc_monthly_price, get_status_badge, format_price
-from src.notifier import send_welcome
 
 st.set_page_config(page_title="구독 관리", page_icon="📋", layout="wide")
 
@@ -80,14 +79,6 @@ def show_auth_page():
                 ok, msg = register_user(new_id, new_pw, new_tg)
                 if ok:
                     st.success(msg)
-                    # 텔레그램 ID 입력한 경우 웰컴 메시지 발송
-                    if new_tg.strip():
-                        with st.spinner("텔레그램 연결 확인 중..."):
-                            sent = send_welcome(new_tg.strip(), new_id)
-                        if sent:
-                            st.info("📱 텔레그램으로 환영 메시지를 발송했어요! 확인해보세요.")
-                        else:
-                            st.warning("⚠️ 텔레그램 발송에 실패했어요. Chat ID를 다시 확인해주세요.")
                     st.session_state.user_id = new_id
                     st.rerun()
                 else:
@@ -286,14 +277,6 @@ def show_profile_page(user_id: str):
             ok, msg = update_user(user_id, telegram_chat_id=new_tg)
             if ok:
                 st.success(msg)
-                # 텔레그램 ID가 입력된 경우 확인 메시지 발송
-                if new_tg.strip():
-                    with st.spinner("텔레그램 연결 확인 중..."):
-                        sent = send_welcome(new_tg.strip(), user_id)
-                    if sent:
-                        st.info("📱 텔레그램으로 연결 확인 메시지를 발송했어요!")
-                    else:
-                        st.warning("⚠️ 텔레그램 발송에 실패했어요. Chat ID를 다시 확인해주세요.")
             else:
                 st.error(msg)
 
