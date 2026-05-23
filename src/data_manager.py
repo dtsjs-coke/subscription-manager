@@ -1,8 +1,7 @@
 import uuid
 import requests
 import streamlit as st
-
-BUTLER_API_URL = "https://greatest-amend-eternal-toilet.trycloudflare.com"
+from src.config import BUTLER_API_URL
 
 
 def load_subscriptions(user_id: str) -> list:
