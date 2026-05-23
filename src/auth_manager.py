@@ -2,7 +2,7 @@ from datetime import date
 import requests
 from src.utils import hash_password, verify_password
 
-BUTLER_API_URL = "https://greatest-amend-eternal-toilet.trycloudflare.com"
+BUTLER_API_URL = "https://distributed-permanent-macro-medicine.trycloudflare.com"
 
 def _get_user_from_api(user_id: str) -> dict:
     try:
