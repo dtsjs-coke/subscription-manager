@@ -2,7 +2,7 @@ import uuid
 import requests
 import streamlit as st
 
-BUTLER_API_URL = "https://distributed-permanent-macro-medicine.trycloudflare.com"
+BUTLER_API_URL = "https://greatest-amend-eternal-toilet.trycloudflare.com"
 
 
 def load_subscriptions(user_id: str) -> list:
