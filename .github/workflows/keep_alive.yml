@@ -1,0 +1,34 @@
+name: Keep Streamlit App Awake
+
+on:
+  schedule:
+    - cron: '0 */6 * * *' # 6시간마다 실행
+  workflow_dispatch: # 수동 실행 가능
+
+jobs:
+  wake-up:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          pip install selenium webdriver-manager
+
+      - name: Wake up Streamlit
+        run: |
+          python .github/scripts/wake_up.py
+
+      - name: Upload screenshot if failed
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: streamlit-status-screenshot
+          path: streamlit_status.png
+          retention-days: 1
