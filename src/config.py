@@ -1,1 +1,1 @@
-BUTLER_API_URL = "https://institutes-solving-combining-export.trycloudflare.com"
+BUTLER_API_URL = "https://governor-giant-believed-ste.trycloudflare.com"
