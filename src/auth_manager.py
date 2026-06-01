@@ -1,11 +1,12 @@
 from datetime import date
 import requests
 from src.utils import hash_password, verify_password
-from src.config import BUTLER_API_URL
+from src.config import BUTLER_API_URL, BUTLER_API_TOKEN
 
 def _get_user_from_api(user_id: str) -> dict:
     try:
-        resp = requests.get(f"{BUTLER_API_URL}/users/{user_id}", timeout=10)
+        headers = {"X-Butler-Token": BUTLER_API_TOKEN}
+        resp = requests.get(f"{BUTLER_API_URL}/users/{user_id}", headers=headers, timeout=10)
         return resp.json() if resp.status_code == 200 else {}
     except Exception:
         return {}
@@ -24,7 +25,8 @@ def register_user(user_id: str, password: str, telegram_chat_id: str = "") -> tu
             "created_at": str(date.today()),
         }
         
-        resp = requests.post(f"{BUTLER_API_URL}/users/{user_id}", json=new_user, timeout=10)
+        headers = {"X-Butler-Token": BUTLER_API_TOKEN}
+        resp = requests.post(f"{BUTLER_API_URL}/users/{user_id}", json=new_user, headers=headers, timeout=10)
         if resp.status_code != 200:
             return False, "사용자 저장에 실패했습니다."
             
@@ -54,7 +56,8 @@ def update_user(user_id: str, new_password: str = "", telegram_chat_id: str = No
         if telegram_chat_id is not None:
             user["telegram_chat_id"] = telegram_chat_id.strip()
             
-        resp = requests.post(f"{BUTLER_API_URL}/users/{user_id}", json=user, timeout=10)
+        headers = {"X-Butler-Token": BUTLER_API_TOKEN}
+        resp = requests.post(f"{BUTLER_API_URL}/users/{user_id}", json=user, headers=headers, timeout=10)
         if resp.status_code == 200:
             return True, "정보가 수정되었습니다."
         return False, "저장에 실패했습니다."
