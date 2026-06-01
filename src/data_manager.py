@@ -1,12 +1,14 @@
 import uuid
 import requests
 import streamlit as st
-from src.config import BUTLER_API_URL
+from src.config import BUTLER_API_URL, BUTLER_API_TOKEN
 
+def get_headers():
+    return {"X-Butler-Token": BUTLER_API_TOKEN}
 
 def load_subscriptions(user_id: str) -> list:
     try:
-        resp = requests.get(f"{BUTLER_API_URL}/subscriptions/{user_id}", timeout=10)
+        resp = requests.get(f"{BUTLER_API_URL}/subscriptions/{user_id}", headers=get_headers(), timeout=10)
         return resp.json() if resp.status_code == 200 else []
     except Exception as e:
         st.error(f"S9 서버 연결 실패: {e}")
@@ -15,7 +17,7 @@ def load_subscriptions(user_id: str) -> list:
 
 def _save_subscriptions(user_id: str, items: list) -> bool:
     try:
-        resp = requests.post(f"{BUTLER_API_URL}/subscriptions/{user_id}", json=items, timeout=10)
+        resp = requests.post(f"{BUTLER_API_URL}/subscriptions/{user_id}", json=items, headers=get_headers(), timeout=10)
         return resp.status_code == 200
     except Exception as e:
         st.error(f"데이터 저장 실패: {e}")

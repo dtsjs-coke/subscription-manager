@@ -1,7 +1,7 @@
 import os
 import requests
 from datetime import date, datetime
-from src.auth_manager import BUTLER_API_URL
+from src.config import BUTLER_API_URL, BUTLER_API_TOKEN
 from src.data_manager import load_subscriptions, _save_subscriptions
 
 def send_telegram(chat_id: str, message: str) -> bool:
@@ -25,7 +25,8 @@ def send_telegram(chat_id: str, message: str) -> bool:
 def check_and_notify():
     # 1. 모든 사용자 목록 가져오기
     try:
-        resp = requests.get(f"{BUTLER_API_URL}/users/all", timeout=10)
+        headers = {"X-Butler-Token": BUTLER_API_TOKEN}
+        resp = requests.get(f"{BUTLER_API_URL}/users/all", headers=headers, timeout=10)
         if resp.status_code != 200:
             # 전체 사용자 목록 API가 없을 경우를 대비해 subscriptions에서 유저 목록 추출 시도
             # (또는 data/users.yaml을 직접 읽어야 할 수도 있으나 API 우선 사용)
