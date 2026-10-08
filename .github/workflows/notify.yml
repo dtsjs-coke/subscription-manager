@@ -25,3 +25,4 @@ jobs:
           GH_PAT: ${{ secrets.GH_PAT }}
           GH_OWNER: ${{ secrets.GH_OWNER }}
           GH_REPO: ${{ secrets.GH_REPO }}
+          BUTLER_API_TOKEN: ${{ secrets.BUTLER_API_TOKEN }}

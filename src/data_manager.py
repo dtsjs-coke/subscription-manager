@@ -1,12 +1,16 @@
 import uuid
 import requests
 import streamlit as st
-from src.config import BUTLER_API_URL, BUTLER_API_TOKEN
+from src.config import BUTLER_API_URL
+from src.butler_token import get_butler_token, TOKEN_MISSING_MESSAGE
 
 def get_headers():
-    return {"X-Butler-Token": BUTLER_API_TOKEN}
+    return {"X-Butler-Token": get_butler_token()}
 
 def load_subscriptions(user_id: str) -> list:
+    if not get_butler_token():
+        st.error(TOKEN_MISSING_MESSAGE)
+        return []
     try:
         resp = requests.get(f"{BUTLER_API_URL}/subscriptions/{user_id}", headers=get_headers(), timeout=10)
         return resp.json() if resp.status_code == 200 else []
@@ -16,6 +20,9 @@ def load_subscriptions(user_id: str) -> list:
 
 
 def _save_subscriptions(user_id: str, items: list) -> bool:
+    if not get_butler_token():
+        st.error(TOKEN_MISSING_MESSAGE)
+        return False
     try:
         resp = requests.post(f"{BUTLER_API_URL}/subscriptions/{user_id}", json=items, headers=get_headers(), timeout=10)
         return resp.status_code == 200

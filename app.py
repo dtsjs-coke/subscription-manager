@@ -1,4 +1,5 @@
 import streamlit as st
+from src.butler_token import get_butler_token, TOKEN_MISSING_MESSAGE
 import pandas as pd
 from datetime import date, datetime
 
@@ -52,6 +53,8 @@ def show_auth_page():
                     st.session_state.user_id = uid
                     st.success("로그인 성공!")
                     st.rerun()
+                elif not get_butler_token():
+                    st.error(TOKEN_MISSING_MESSAGE)
                 else:
                     st.error("아이디 또는 비밀번호가 올바르지 않습니다.")
 

@@ -1,11 +1,15 @@
 from datetime import date
 import requests
 from src.utils import hash_password, verify_password
-from src.config import BUTLER_API_URL, BUTLER_API_TOKEN
+from src.config import BUTLER_API_URL
+from src.butler_token import get_butler_token, TOKEN_MISSING_MESSAGE
 
 def _get_user_from_api(user_id: str) -> dict:
+    token = get_butler_token()
+    if not token:
+        return {}
     try:
-        headers = {"X-Butler-Token": BUTLER_API_TOKEN}
+        headers = {"X-Butler-Token": token}
         resp = requests.get(f"{BUTLER_API_URL}/users/{user_id}", headers=headers, timeout=10)
         return resp.json() if resp.status_code == 200 else {}
     except Exception:
@@ -13,6 +17,9 @@ def _get_user_from_api(user_id: str) -> dict:
 
 
 def register_user(user_id: str, password: str, telegram_chat_id: str = "") -> tuple[bool, str]:
+    token = get_butler_token()
+    if not token:
+        return False, TOKEN_MISSING_MESSAGE
     try:
         existing_user = _get_user_from_api(user_id)
         if existing_user:
@@ -25,7 +32,7 @@ def register_user(user_id: str, password: str, telegram_chat_id: str = "") -> tu
             "created_at": str(date.today()),
         }
         
-        headers = {"X-Butler-Token": BUTLER_API_TOKEN}
+        headers = {"X-Butler-Token": token}
         resp = requests.post(f"{BUTLER_API_URL}/users/{user_id}", json=new_user, headers=headers, timeout=10)
         if resp.status_code != 200:
             return False, "사용자 저장에 실패했습니다."
@@ -36,6 +43,8 @@ def register_user(user_id: str, password: str, telegram_chat_id: str = "") -> tu
 
 
 def login(user_id: str, password: str) -> tuple[bool, dict]:
+    if not get_butler_token():
+        return False, {"error": TOKEN_MISSING_MESSAGE}
     try:
         user = _get_user_from_api(user_id)
         if user and verify_password(password, user.get("password_hash", "")):
@@ -46,6 +55,9 @@ def login(user_id: str, password: str) -> tuple[bool, dict]:
 
 
 def update_user(user_id: str, new_password: str = "", telegram_chat_id: str = None) -> tuple[bool, str]:
+    token = get_butler_token()
+    if not token:
+        return False, TOKEN_MISSING_MESSAGE
     try:
         user = _get_user_from_api(user_id)
         if not user:
@@ -56,7 +68,7 @@ def update_user(user_id: str, new_password: str = "", telegram_chat_id: str = No
         if telegram_chat_id is not None:
             user["telegram_chat_id"] = telegram_chat_id.strip()
             
-        headers = {"X-Butler-Token": BUTLER_API_TOKEN}
+        headers = {"X-Butler-Token": token}
         resp = requests.post(f"{BUTLER_API_URL}/users/{user_id}", json=user, headers=headers, timeout=10)
         if resp.status_code == 200:
             return True, "정보가 수정되었습니다."
