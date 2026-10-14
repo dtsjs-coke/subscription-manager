@@ -1,1 +1,1 @@
-BUTLER_API_URL = "https://arc-sport-prepared-href.trycloudflare.com"
+BUTLER_API_URL = "https://athletic-salem-allied-candle.trycloudflare.com"
