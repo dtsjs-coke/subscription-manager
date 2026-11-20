@@ -1,1 +1,1 @@
-BUTLER_API_URL = "https://surf-funny-dallas-airfare.trycloudflare.com"
+BUTLER_API_URL = "https://morning-phase-uncertainty-mods.trycloudflare.com"
